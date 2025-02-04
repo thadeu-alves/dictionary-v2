@@ -3,3 +3,63 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    background-color: #8c8b88;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .word{
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+    }
+
+    button{
+        padding: 5px 0px;
+        border: none;
+        border-radius: 25px;
+        background-color: black;
+        color: white;
+    }
+
+    button:hover{
+        background-color: #3c3c3a;
+    }
+}
+
+.searched{
+    flex-direction: row;
+    gap: 5px;
+    transition: all 0.5s ease-in-out;
+
+    button{
+        padding: 0 5px;
+    }
+}
+
+.result{
+    margin: 25px auto;
+    padding: 0 25px;
+    text-align: center;
+
+    p{
+        font-family: monospace;
+    }
+}
+
+.typing {
+    overflow: hidden;
+    white-space: normal;
+    word-break: break-word;
+}
