@@ -30,7 +30,7 @@ async function search(){
         var text = data[0].meanings[0].definitions[0].definition;
         addText(text);
         addWord(text, input.value);
-        input.value = "";
+        console.log(data);
     }
 }
 
@@ -65,7 +65,7 @@ async function getSign(word) {
 
 function addText(text){
     result.innerHTML = `<p>${text}</p>`;
-    typeWriterEffect(result, text, text.length);
+    typeWriterEffect(result.querySelector("p"), text, text.length);
 }
 
 function addWord(text, word){
@@ -74,7 +74,6 @@ function addWord(text, word){
         text,
         id: allWords.length,
     });
-    console.log(allWords);
 }
 
 function typeWriterEffect(element, text) {
