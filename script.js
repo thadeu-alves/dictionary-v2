@@ -25,12 +25,17 @@ btnViewAll.addEventListener("click", () => viewAll());
 async function search(){
     if (input.value != "") {
         loading()
-        form.classList.add("searched");
         var data =  await getSign(input.value);
+
+        var word = input.value;
         var text = data[0].meanings[0].definitions[0].definition;
-        addText(text);
-        addWord(text, input.value);
+        var partOf = data[0].meanings[0].partOfSpeech;
+        var synon = data[0].meanings[0].synonyms;
+        
+        addText(text, word, partOf, synon);
+        addWord(text, word);
         console.log(data);
+        input.value = "";
     }
 }
 
@@ -63,8 +68,14 @@ async function getSign(word) {
     return response;
 }
 
-function addText(text){
-    result.innerHTML = `<p>${text}</p>`;
+function addText(text, word, partOf, synon){
+    result.innerHTML = `<h1>${word}</h1>
+            <h2>${partOf}</h2>
+
+            <p>${text}</p>
+
+
+            <h3>${synon}</h3>`;
     typeWriterEffect(result.querySelector("p"), text, text.length);
 }
 

@@ -43,8 +43,9 @@ section{
 
 .form{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--gap);
+    transition: all 0.5s ease-in-out;
 
     .word{
         border: none;
@@ -54,7 +55,7 @@ section{
     }
 
     button{
-        padding: 5px 0px;
+        padding: 0 5px;
         border: none;
         border-radius: 25px;
         background-color: black;
@@ -66,21 +67,26 @@ section{
     }
 }
 
-.searched{
-    flex-direction: row;
-    gap: var(--gap);
-    transition: all 0.5s ease-in-out;
-
-    button{
-        padding: 0 5px;
-    }
-}
-
 .result{
     padding: 0 25px;
-    text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+
+    h1{
+        font-family: monospace;
+        font-size: var(--font-md);
+        margin: 0;
+    }
+
+    h2{
+        font-family: monospace;
+        color: #3c3c3a;
+        font-size: var(--font-small);
+        margin-bottom: var(--gap);
+    }
 
     p{
         font-family: monospace;
@@ -92,6 +98,16 @@ section{
         overflow: hidden;
         white-space: nowrap; 
         animation: typing 1s steps(3, end) infinite;
+    }
+
+    h3{
+        margin-top: var(--gap);
+        font-family: monospace;
+        font-size: var(--font-small);
+        border-left: 2px solid white;
+        padding-left: 10px;
+        color: #3c3c3a;
+        word-break: break-word;
     }
 }
 
@@ -131,6 +147,7 @@ section{
         cursor: pointer;
         padding: 5px 10px;
         border-radius: 5px;
+        text-align: center;
     }
 
     p:hover{
