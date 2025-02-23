@@ -5,13 +5,18 @@ const App = {
     input: document.querySelector(".word"),
     start(){
         console.log("started");
-        this.btnSearch.addEventListener("click", this.onSearchClick);
+        this.input.addEventListener("keypress", e => {
+            if (e.key === 'Enter') {
+                this.onSearchClick();
+            }
+        })
+        this.btnSearch.addEventListener("click", () => this.onSearchClick());
         console.log(this.input);
     },
     onSearchClick(){
-        console.log(this.input);
-        //let word = this.input.value;
-        //Data.search(word);
+        console.log(this.input.value);
+        let word = this.input.value;
+        Data.search(word);
     }
 }
 
