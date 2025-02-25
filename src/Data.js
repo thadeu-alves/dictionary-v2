@@ -4,6 +4,7 @@ const Data = {
     API_URL: "https://api.dictionaryapi.dev/api/v2/entries/en/",
     async search(word){
         try {
+            Dom.loading();
             let data = await this.getData(word);
             console.log(data);
             this.addWord(data);
