@@ -29,9 +29,15 @@ const Data = {
         let synon = data[0].meanings[0].synonyms;
         allWords.push({
             word,
-            text
+            text,
+            id: allWords.length,
         });
         Dom.addResult(word, text, partOf, synon);
+    },
+    recents(){
+        if(allWords.length > 0){
+            Dom.showRecents(allWords);
+        }
     }
 }
 

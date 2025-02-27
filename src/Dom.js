@@ -1,6 +1,8 @@
 const Dom = {
     result: document.querySelector(".result"),
     divLoading: document.querySelector(".loading"),
+    recents: document.querySelector(".recents"),
+    wordDisplay: document.querySelector(".wordDisplay"),
     addResult(word, text, partOf, synon){
         this.loaded();
         this.result.innerHTML = `
@@ -33,6 +35,40 @@ const Dom = {
     },
     loaded(){
         this.divLoading.style.display = "none";
+    },
+    showRecents(allWords){
+        let div = this.recents.querySelector("div");
+        this.recents.style.display = "flex";
+        this.recents.querySelector("button").addEventListener("click", () => {
+            this.recents.style.display = "none";
+        })
+
+        div.innerHTML = "";
+
+        allWords.map(e => {
+            let p = document.createElement("p");
+            p.innerHTML = e.word;
+            p.addEventListener("click", () => {
+                this.showWord(e.id, allWords);
+            })
+            div.appendChild(p);
+        })
+    },
+    showWord(id, allWords) {
+        let word = allWords[id].word;
+        let text = allWords[id].text;
+        let div = this.wordDisplay.querySelector("div");
+    
+        this.wordDisplay.style.display = "flex";
+        div.innerHTML = "";
+        div.innerHTML = `<h1>${word}</h1>
+                <p>${text}</p>`;
+    
+        window.addEventListener("click", e => {
+            if(e.target.classList.contains("wordDisplay")) {
+                this.wordDisplay.style.display = "none";
+            }
+        })
     }
 }
 
