@@ -3,6 +3,7 @@ const Dom = {
     divLoading: document.querySelector(".loading"),
     recents: document.querySelector(".recents"),
     wordDisplay: document.querySelector(".wordDisplay"),
+    btnViewAll: document.querySelector(".btnViewAll"),
     addResult(word, text, partOf, synon){
         this.loaded();
         this.result.innerHTML = `
@@ -69,6 +70,9 @@ const Dom = {
                 this.wordDisplay.style.display = "none";
             }
         })
+    },
+    displayBtnAll(){
+        this.btnViewAll.style.display = "initial";
     }
 }
 

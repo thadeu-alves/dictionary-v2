@@ -27,11 +27,24 @@ const Data = {
         let text = data[0].meanings[0].definitions[0].definition;
         let partOf = data[0].meanings[0].partOfSpeech;
         let synon = data[0].meanings[0].synonyms;
-        allWords.push({
+        let canAdd = true
+        let object = {
             word,
             text,
             id: allWords.length,
-        });
+        }
+        allWords.forEach(e => {
+            if(e.word == word){
+                console.log("true");
+                canAdd = false;
+            }
+        })
+        if(canAdd){
+            allWords.push(object);
+        }
+        if(allWords.length == 1){
+            Dom.displayBtnAll();
+        }
         Dom.addResult(word, text, partOf, synon);
     },
     recents(){
