@@ -27,6 +27,7 @@ const Data = {
         let text = data[0].meanings[0].definitions[0].definition;
         let partOf = data[0].meanings[0].partOfSpeech;
         let synon = data[0].meanings[0].synonyms;
+        let audioSrc = data[0].phonetics[0]?.audio || "";
         let canAdd = true
         let object = {
             word,
@@ -45,7 +46,7 @@ const Data = {
         if(allWords.length == 1){
             Dom.displayBtnAll();
         }
-        Dom.addResult(word, text, partOf, synon);
+        Dom.addResult(word, text, partOf, synon, audioSrc);
     },
     recents(){
         if(allWords.length > 0){

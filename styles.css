@@ -126,6 +126,12 @@ section{
         color: #3c3c3a;
         word-break: break-word;
     }
+
+    .audio-play{
+        position: static;
+        right: 0;
+        top: 0;
+    }
 }
 
 .loading{

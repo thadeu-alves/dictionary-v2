@@ -4,13 +4,15 @@ const Dom = {
     recents: document.querySelector(".recents"),
     wordDisplay: document.querySelector(".wordDisplay"),
     btnViewAll: document.querySelector(".btnViewAll"),
-    addResult(word, text, partOf, synon){
+    audio: document.querySelector("audio"),
+    addResult(word, text, partOf, synon, audioSrc){
+        console.log(audioSrc);
         this.loaded();
-        this.result.innerHTML = `
-            <h1>${word}</h1>
-            <h2>${partOf}</h2>
-            <p>${text}</p>
-            <h3>${synon}</h3>`;
+        this.audio.src = audioSrc;
+        this.result.querySelector("h1").innerHTML = word;
+        this.result.querySelector("h2").innerHTML = partOf;
+        this.result.querySelector("p").innerHTML = text;
+        this.result.querySelector("h3").innerHTML = synon;
         this.typeWriterEffect(this.result.querySelector("p"), text, text.length);
     },
     typeWriterEffect(element, text){
@@ -31,10 +33,11 @@ const Dom = {
         type(); 
     },
     loading(){
-        this.result.innerHTML = "";
+        this.result.style.display = "none";
         this.divLoading.style.display = "flex";
     },
     loaded(){
+        this.result.style.display = "initial";
         this.divLoading.style.display = "none";
     },
     showRecents(allWords){
@@ -73,6 +76,10 @@ const Dom = {
     },
     displayBtnAll(){
         this.btnViewAll.style.display = "initial";
+    },
+    playAudio(){
+        console.log("music play");
+        this.audio.play();
     }
 }
 

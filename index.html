@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="./assets/search.svg" type="image/x-icon">
 </head>
 <body>
 
@@ -27,9 +28,8 @@
             <input type="text" class="word">
             <span class="clear">X</span>
         </div>
-        
         <div class="result">
-            <h1>Dictionary app</h1>
+            <h1>Dictionary app <button class="audio-play">Play</button></h1>
             <h2>HTML, CSS and JS</h2>
 
             <p>Developed by Thadeu Alves.</p>
@@ -52,6 +52,8 @@
             
         </div>
     </div>
+
+    <audio></audio>
 
     <script type="module">
         import { App } from "./src/App.js";
