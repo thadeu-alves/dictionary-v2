@@ -5,14 +5,27 @@ const Dom = {
     wordDisplay: document.querySelector(".wordDisplay"),
     btnViewAll: document.querySelector(".btnViewAll"),
     audio: document.querySelector("audio"),
+    audioPlayer: document.querySelector(".audio-player"),
     addResult(word, text, partOf, synon, audioSrc){
         console.log(audioSrc);
         this.loaded();
         this.audio.src = audioSrc;
-        this.result.querySelector("h1").innerHTML = word;
-        this.result.querySelector("h2").innerHTML = partOf;
-        this.result.querySelector("p").innerHTML = text;
-        this.result.querySelector("h3").innerHTML = synon;
+
+        this.audio.addEventListener('error', () => {
+            console.error("Erro ao carregar o áudio: Fonte não suportada ou inválida.");
+            this.audioPlayer.style.display = "none";
+        });
+
+
+        this.result.innerHTML = `
+            <h1>${word}</h1>
+            <h2>${partOf}</h2>
+
+            <p>${text}</p>
+
+
+            <h3>${synon}</h3>
+        `;
         this.typeWriterEffect(this.result.querySelector("p"), text, text.length);
     },
     typeWriterEffect(element, text){
@@ -33,12 +46,13 @@ const Dom = {
         type(); 
     },
     loading(){
-        this.result.style.display = "none";
+        this.result.innerHTML = "";
         this.divLoading.style.display = "flex";
+        this.audioPlayer.style.display = "none";
     },
     loaded(){
-        this.result.style.display = "initial";
         this.divLoading.style.display = "none";
+        this.audioPlayer.style.display = "flex";
     },
     showRecents(allWords){
         let div = this.recents.querySelector("div");
@@ -79,7 +93,13 @@ const Dom = {
     },
     playAudio(){
         console.log("music play");
-        this.audio.play();
+        try{
+            this.audio.play().catch(error => {
+                console.log("Erro ao tentar reproduzir o áudio:", error.message);
+            });
+        }catch(error){
+            console.log(error.message);
+        };
     }
 }
 
