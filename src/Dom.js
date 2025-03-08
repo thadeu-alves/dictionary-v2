@@ -6,8 +6,9 @@ const Dom = {
     btnViewAll: document.querySelector(".btnViewAll"),
     audio: document.querySelector("audio"),
     audioPlayer: document.querySelector(".audio-player"),
+
     addResult(word, text, partOf, synon, audioSrc){
-        console.log(audioSrc);
+
         this.loaded();
         this.audio.src = audioSrc;
 
@@ -16,18 +17,14 @@ const Dom = {
             this.audioPlayer.style.display = "none";
         });
 
+        this.innerElement(this.result, "h1", word);
+        this.innerElement(this.result, "h2", partOf);
+        this.innerElement(this.result, "p", text);
+        this.innerElement(this.result, "h3", synon);
 
-        this.result.innerHTML = `
-            <h1>${word}</h1>
-            <h2>${partOf}</h2>
-
-            <p>${text}</p>
-
-
-            <h3>${synon}</h3>
-        `;
         this.typeWriterEffect(this.result.querySelector("p"), text, text.length);
     },
+
     typeWriterEffect(element, text){
         element.innerHTML = '';
         element.classList.add('typing'); // Adiciona a classe de animação
@@ -45,23 +42,26 @@ const Dom = {
 
         type(); 
     },
+
     loading(){
-        this.result.innerHTML = "";
-        this.divLoading.style.display = "flex";
-        this.audioPlayer.style.display = "none";
+        this.undisplayElement(this.result, true);
+        this.displayElement(this.divLoading, "flex");
+        this.undisplayElement(this.audioPlayer);
     },
+
     loaded(){
-        this.divLoading.style.display = "none";
-        this.audioPlayer.style.display = "flex";
+        this.undisplayElement(this.divLoading);
+        this.displayElement(this.audioPlayer, "flex");
     },
+
     showRecents(allWords){
         let div = this.recents.querySelector("div");
-        this.recents.style.display = "flex";
+        this.displayElement(this.recents, "flex");
         this.recents.querySelector("button").addEventListener("click", () => {
-            this.recents.style.display = "none";
+            this.undisplayElement(this.recents);
         })
 
-        div.innerHTML = "";
+        this.undisplayElement(div, true);
 
         allWords.map(e => {
             let p = document.createElement("p");
@@ -72,34 +72,58 @@ const Dom = {
             div.appendChild(p);
         })
     },
+
     showWord(id, allWords) {
         let word = allWords[id].word;
         let text = allWords[id].text;
         let div = this.wordDisplay.querySelector("div");
     
-        this.wordDisplay.style.display = "flex";
-        div.innerHTML = "";
-        div.innerHTML = `<h1>${word}</h1>
-                <p>${text}</p>`;
+        this.displayElement(this.wordDisplay, "flex");
+        this.undisplayElement(div, true);
+        this.innerElement(div, "h1", word);
+        this.innerElement(div, "p", text);
     
         window.addEventListener("click", e => {
             if(e.target.classList.contains("wordDisplay")) {
-                this.wordDisplay.style.display = "none";
+                this.undisplayElement(this.wordDisplay);
             }
         })
     },
+
     displayBtnAll(){
-        this.btnViewAll.style.display = "initial";
+        this.displayElement(this.btnViewAll, "initial");
     },
+
     playAudio(){
-        console.log("music play");
+        console.log("audio play");
+
         try{
             this.audio.play().catch(error => {
                 console.log("Erro ao tentar reproduzir o áudio:", error.message);
             });
         }catch(error){
             console.log(error.message);
-        };
+        }
+
+    },
+
+    undisplayElement(element, innner = false){
+        if(innner){
+            element.innerHTML = "";
+        }else{
+            element.style.display = "none";
+        }
+        
+    },
+
+    displayElement(element, value){
+        element.style.display = value;
+    },
+
+    innerElement(element, type, value){
+        let create = document.createElement(type);
+        create.innerHTML = value;
+        element.appendChild(create);
     }
 }
 

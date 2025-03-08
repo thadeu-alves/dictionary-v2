@@ -54,6 +54,7 @@ section{
     .word{
         border: none;
         font-family: monospace;
+        outline: none;
     }
 
     img{

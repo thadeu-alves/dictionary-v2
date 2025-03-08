@@ -6,10 +6,13 @@ const App = {
     btnSearch: document.querySelector(".btnSearch"),
     btnViewAll: document.querySelector(".btnViewAll"),
     btnAuioPlay: document.querySelector(".audio-play"),
-    input: document.querySelector(".word"),
     btnClear: document.querySelector(".clear"),
+    input: document.querySelector(".word"),
+
+
     start(){
-        console.log("started");
+
+
         this.input.addEventListener("keypress", e => {
             if (e.key === 'Enter') {
                 this.onSearchClick();
@@ -17,25 +20,29 @@ const App = {
                 this.btnClear.style.display = "initial";
             }
         })
+
+
         this.btnClear.addEventListener("click", () => this.onClearClick());
         this.btnSearch.addEventListener("click", () => this.onSearchClick());
         this.btnViewAll.addEventListener("click", () => this.onViewAllClick());  
         this.btnAuioPlay.addEventListener("click", () => this.onAudioPlayClick());  
     },
+
     onSearchClick(){
-        console.log(this.input.value);
         let word = this.input.value;
         Data.search(word);
     },
+
     onViewAllClick(){
-        Data.recents();
+        Data.showRecents();
     },
+
     onClearClick(){
         this.input.value = "";
         this.btnClear.style.display = "none";
     },
+    
     onAudioPlayClick(){
-        console.log('play audio')
         Dom.playAudio();
     }
 }
