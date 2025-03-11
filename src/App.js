@@ -4,7 +4,6 @@ import { Dom } from "./Dom.js";
 
 const App = {
     btnSearch: document.querySelector(".btnSearch"),
-    btnViewAll: document.querySelector(".btnViewAll"),
     btnAuioPlay: document.querySelector(".audio-play"),
     btnClear: document.querySelector(".clear"),
     input: document.querySelector(".word"),
@@ -24,17 +23,12 @@ const App = {
 
         this.btnClear.addEventListener("click", () => this.onClearClick());
         this.btnSearch.addEventListener("click", () => this.onSearchClick());
-        this.btnViewAll.addEventListener("click", () => this.onViewAllClick());  
         this.btnAuioPlay.addEventListener("click", () => this.onAudioPlayClick());  
     },
 
     onSearchClick(){
         let word = this.input.value;
         Data.search(word);
-    },
-
-    onViewAllClick(){
-        Data.showRecents();
     },
 
     onClearClick(){

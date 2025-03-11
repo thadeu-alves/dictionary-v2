@@ -49,18 +49,8 @@ const Data = {
             allWords.push(object);
         }
         
-        if(allWords.length == 1){
-            Dom.displayBtnAll();
-        }
-        
         Dom.addResult(word, text, partOf, synon, audioSrc);
     },
-
-    showRecents(){
-        if(allWords.length > 0){
-            Dom.showRecents(allWords);
-        }
-    }
 }
 
 const allWords = []

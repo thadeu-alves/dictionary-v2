@@ -1,9 +1,6 @@
 const Dom = {
     result: document.querySelector(".result"),
     divLoading: document.querySelector(".loading"),
-    recents: document.querySelector(".recents"),
-    wordDisplay: document.querySelector(".wordDisplay"),
-    btnViewAll: document.querySelector(".btnViewAll"),
     audio: document.querySelector("audio"),
     audioPlayer: document.querySelector(".audio-player"),
 
@@ -52,46 +49,6 @@ const Dom = {
     loaded(){
         this.undisplayElement(this.divLoading);
         this.displayElement(this.audioPlayer, "flex");
-    },
-
-    showRecents(allWords){
-        let div = this.recents.querySelector("div");
-        this.displayElement(this.recents, "flex");
-        this.recents.querySelector("button").addEventListener("click", () => {
-            this.undisplayElement(this.recents);
-        })
-
-        this.undisplayElement(div, true);
-
-        allWords.map(e => {
-            let p = document.createElement("p");
-            p.innerHTML = e.word;
-            p.addEventListener("click", () => {
-                this.showWord(e.id, allWords);
-            })
-            div.appendChild(p);
-        })
-    },
-
-    showWord(id, allWords) {
-        let word = allWords[id].word;
-        let text = allWords[id].text;
-        let div = this.wordDisplay.querySelector("div");
-    
-        this.displayElement(this.wordDisplay, "flex");
-        this.undisplayElement(div, true);
-        this.innerElement(div, "h1", word);
-        this.innerElement(div, "p", text);
-    
-        window.addEventListener("click", e => {
-            if(e.target.classList.contains("wordDisplay")) {
-                this.undisplayElement(this.wordDisplay);
-            }
-        })
-    },
-
-    displayBtnAll(){
-        this.displayElement(this.btnViewAll, "initial");
     },
 
     playAudio(){
