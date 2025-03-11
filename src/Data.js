@@ -7,6 +7,13 @@ const Data = {
         try {
             Dom.loading();
             let data = await this.getData(word);
+            if(!data){
+                console.log("deu ruim");
+
+                this.addWord();
+
+                return;
+            }
             this.addWord(data);
         } catch (error) {
             console.log(error.message);
@@ -16,26 +23,30 @@ const Data = {
     async getData(word){
         const reponse = await fetch(this.API_URL + word);
         if(!reponse.ok){
-            throw new Error("Undefined");
+            return false;
         }
-
 
         const data = await reponse.json();
         return data;
     },
 
     addWord(data){
+        
+        if(!data){
+            this.search("undefined");
+            return;
+        }
+
         let word = data[0].word;
-        let text = data[0].meanings[0].definitions[0].definition;
-        let partOf = data[0].meanings[0].partOfSpeech;
-        let synon = data[0].meanings[0].synonyms;
+        let text = data[0]?.meanings[0]?.definitions[0].definition;
+        let partOf = data[0]?.meanings[0]?.partOfSpeech;
+        let synon = data[0].meanings[0]?.synonyms;
         let audioSrc = data[0].phonetics[0]?.audio || "";
         let canAdd = true
 
         let object = {
             word,
             text,
-            id: allWords.length,
         }
 
         allWords.forEach(e => {

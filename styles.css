@@ -30,13 +30,12 @@ section{
     justify-content: center;
     align-items: center;
     width: 80vw;
-    max-width: 800px;
-    padding: 25px;
+    max-width: 600px;
     border-radius: 15px;
-    gap: var(--gap);
+    padding: 25px 60px;
+    gap: 30px;
     
     h1{
-        margin-bottom: 15px;
         font-family: "Ephesis", serif;
         font-size: var(--font-md);
     }
@@ -46,7 +45,7 @@ section{
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: var(--gap);
+    gap: 1px;
     transition: all 0.5s ease-in-out;
     border: 1px solid #8c8b88;
     border-radius: 10px;
@@ -56,6 +55,9 @@ section{
         border: none;
         font-family: monospace;
         outline: none;
+        width: 100%;
+        height: 40px;
+        padding: 0 8px;
     }
 
     img{
@@ -66,11 +68,13 @@ section{
     button{
 
         height: 40px;
-        width: 40px;
+        aspect-ratio: 1;
         border: none;
         border-radius: 25px;
         background-color: black;
         color: white;
+
+        cursor: pointer;
     }
 
     button:hover{
@@ -91,7 +95,6 @@ section{
     justify-content: flex-start;
     align-items: center;
     gap: 15px;
-    padding-left: 25px;
 
     button{
         border: none;
@@ -99,6 +102,12 @@ section{
         width: 40px;
         height: 40px;
         border-radius: 100%;
+
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: #3c3c3a;
     }
 
     img{
@@ -112,8 +121,6 @@ section{
 }
 
 .result{
-    padding: 0 25px;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -123,19 +130,20 @@ section{
     h1{
         font-family: monospace;
         font-size: var(--font-md);
-        margin: 0;
+        margin: 0 15px;
     }
 
     h2{
         font-family: monospace;
         color: #3c3c3a;
         font-size: var(--font-small);
-        margin-bottom: var(--gap);
+        margin: 0 15px;
     }
 
     p{
         font-family: monospace;
         font-size: var(--font-small);
+        margin: 30px 0;
     }
 
     div{
@@ -146,7 +154,6 @@ section{
     }
 
     h3{
-        margin-top: var(--gap);
         font-family: monospace;
         font-size: var(--font-small);
         border-left: 2px solid #3c3c3a;
@@ -189,93 +196,6 @@ section{
     word-break: break-word;
 }
 
-.btnViewAll{
-    display: none;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 25px;
-}
-
-.btnViewAll:hover{
-    background-color: rgb(200, 200, 200);
-}
-
-.recents{
-    width: 100vw;
-    height: 100vh;
-    background-color: #3c3c3a;
-    color: white;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--gap);
-
-    p{
-        font-size: var(--font-md);
-        font-weight: bold;
-        font-family: sans-serif;
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    p:hover{
-        background-color: #8c8b88;
-    }
-
-    button{
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 25px;
-    }
-    
-    button:hover{
-        background-color: rgb(200, 200, 200);
-    }
-}
-
-.wordDisplay{
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(0, 0, 0, .5);
-
-    .word{
-        background-color: white;
-        margin: 0 50px;
-        padding: 10px 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        border-radius: 15px;
-        font-family: monospace;
-        max-width: 1000px;
-
-        h1{
-            margin-bottom: 0;
-            font-size: var(--font-lg);
-        }
-
-        p{
-            margin-bottom: 25px;
-            font-size: var(--font-small);
-        }
-    }
-
-
-}
-
 @keyframes typing {
     from{
         width: 0;
@@ -303,17 +223,6 @@ section{
         --font-md: 40px;
         --font-lg: 80px;
     }
-
-    .form{
-        .word{
-            height: 6vh;
-            width: 40vw;
-            max-width: 250px;
-            font-size: var(--font-small);
-        }
-    }
-
-    
 }
 
 @media (min-width: 768px) {
